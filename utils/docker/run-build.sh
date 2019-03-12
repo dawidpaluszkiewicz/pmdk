@@ -42,11 +42,14 @@ set -e
 
 # Build all and run tests
 cd $WORKDIR
-make check-license
-make cstyle
+#make check-license
+#make cstyle
 make -j2 USE_LIBUNWIND=1
 make -j2 test USE_LIBUNWIND=1
-make -j2 pcheck TEST_BUILD=$TEST_BUILD
-make -j2 pycheck
-make DESTDIR=/tmp source
+#make -j2 pcheck TEST_BUILD=$TEST_BUILD
+#make -j2 pycheck
+while [ true ] ; do 
+	make -C src/test/obj_check_remote pcheck
+done
+#make DESTDIR=/tmp source
 
